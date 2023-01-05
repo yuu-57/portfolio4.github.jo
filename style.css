@@ -1,0 +1,220 @@
+@charset "utf-8";
+
+/* common */
+
+/* marginはtopかbottomで統一しよう
+相殺を防ぐため */
+
+body {
+  margin: 0;
+  color: #333333;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  opacity: .8;
+}
+
+ul {
+  list-style: none;
+}
+
+/* 全体の幅を設定 */
+.container {
+  /* outline: 2px solid blue; */
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* 中身のコンテンツの幅 */
+.inner {
+  /* outline: 2px solid red; */
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* タイトルをまとめて設定
+タイトルだけ中央に設定したい時なんかにいいかも
+今後増えた時や、訂正する時に管理しやすいよ */
+h1.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* header */
+
+header {
+  margin-top: 60px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+/* hero */
+
+.hero {
+  margin-bottom: 60px;
+}
+
+
+/* index */
+
+.index {
+  background: #F5F5F5;
+  padding: 60px;
+  margin-bottom: 60px;
+  /* text-align: center; */
+  /* ↑タイトルのために中央揃えにしてみたけど、他の要素のことも考えてタイトルは別でclass属性をつけてcommonで設定してあげるといいかも */
+}
+
+.index-inner {
+  border: 1px solid #333333;
+  padding: 30px;
+}
+
+.index ol {
+  /* 「display: table;」と「margin: 0 auto;」で中央に配置。
+※この方法を使うとテキストの長さに応じて可変で中央配置できる
+display:table を指定すると table 要素のように中身の文字数に応じた横幅で表示されるようになる。
+左横の数字も一緒にくっついてきてくれる
+
+特に何も指定しなければ、ol 要素は通常はページ幅いっぱいに領域が表示されてしまう。
+width で横幅を指定できるが、それだと文字数が少ないときは余白が気になり、文字数が多い場合は途中で改行されて表示される。  */
+  display: table;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+.index li + li {
+  margin-top: 20px;
+}
+
+/* pic */
+
+.pic ul {
+  margin: 0;
+  margin-bottom: 45px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pic img {
+  width: 390px;
+  /* width: 49%; */
+  /* margin-bottom: 15px; */
+}
+
+/* detail */
+
+.detail {
+  background: #F5F5F5;
+  padding: 60px;
+  margin-bottom: 60px;
+}
+
+.detail .flex {
+  font-size: 14px;
+  display: flex;
+}
+
+/* フレックスコンテナの中身(di, .text)のwidthは％で二分割するのがポイント */
+.detail dl {
+  width: 35%;
+  border-right: 1px solid #333333;
+  padding-right: 40px;
+}
+
+.detail dt {
+  font-weight: bold;
+}
+
+.detail dd + dt {
+  margin-top: 10px;
+}
+
+.detail dd {
+  margin: 0;
+}
+
+dt::after {
+  content: "：";
+}
+
+.detail .text {
+  width: 65%;
+  padding-left: 40px;
+}
+
+.detail p {
+  margin-bottom: 20px;
+}
+
+
+/* footer */
+
+footer {
+  text-align: center;
+  font-size: 10px;
+  padding: 15px 0;
+}
+
+@media (max-width: 1024px) {
+
+  .inner {
+    padding: 20px;
+  }
+
+  .pic ul {
+    flex-direction: column;
+  }
+
+  /* 画像を小さくしたいからimgの親要素であるliのwidthを100％にしてimgを小さく設定 */
+  .pic li {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* picをwidth100%にすると大きくなりすぎちゃう
+  gapがなくなる瞬間がある */
+  .pic img {
+    width: 80%;
+    /* width: 100%; */
+  }
+
+  .detail {
+    padding: 40px 20px;
+  }
+  .detail .flex {
+    flex-direction: column;
+  }
+
+  /* 上で設定したborderとpaddingを打ち消して再設定
+  borderも横幅いっぱいまで引きたいからwidthも100%になおす */
+  .detail dl {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #333333;
+    padding-right: 0;
+    padding-bottom: 40px;
+  }
+  
+  .detail .text {
+    width: 100%;
+    padding-left: 0;
+    padding-top: 40px;
+  }
+
+}
